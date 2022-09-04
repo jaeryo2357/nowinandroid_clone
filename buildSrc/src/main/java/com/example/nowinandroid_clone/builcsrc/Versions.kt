@@ -89,6 +89,7 @@ object Libs {
             }
 
             const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
+            const val mockk = "io.mockk:mockk:1.12.1"
         }
 
         object Lifecycle {

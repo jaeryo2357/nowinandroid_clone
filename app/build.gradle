@@ -31,6 +31,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -44,6 +45,11 @@ android {
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
         }
     }
 }
@@ -69,6 +75,10 @@ dependencies {
     implementation Libs.AndroidX.Compose.runtimeLivedata
 
     debugImplementation Libs.AndroidX.Compose.uiTestManifest
+
+    testImplementation Libs.AndroidX.Test.Ext.junit
+    testImplementation Libs.AndroidX.Test.mockk
+    testImplementation Libs.AndroidX.Test.core
 
     androidTestImplementation Libs.junit
     androidTestImplementation Libs.AndroidX.Test.core

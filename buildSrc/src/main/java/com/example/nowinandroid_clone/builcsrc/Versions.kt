@@ -32,6 +32,9 @@ object Libs {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
+        const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.1"
+        const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:$version"
+        const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1"
     }
 
     object Coroutines {

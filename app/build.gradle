@@ -4,6 +4,7 @@ import com.example.nowinandroid_clone.builcsrc.Versions
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -56,6 +57,8 @@ android {
 
 dependencies {
     implementation Libs.Coroutines.android
+    implementation Libs.Kotlin.datetime
+    implementation Libs.Kotlin.serializationJson
 
     implementation Libs.AndroidX.Activity.activityCompose
     implementation Libs.AndroidX.coreKtx
@@ -79,6 +82,7 @@ dependencies {
     testImplementation Libs.AndroidX.Test.Ext.junit
     testImplementation Libs.AndroidX.Test.mockk
     testImplementation Libs.AndroidX.Test.core
+    testImplementation Libs.Coroutines.test
 
     androidTestImplementation Libs.junit
     androidTestImplementation Libs.AndroidX.Test.core

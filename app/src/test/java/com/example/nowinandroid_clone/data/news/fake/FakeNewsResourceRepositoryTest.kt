@@ -1,11 +1,9 @@
 package com.example.nowinandroid_clone.data.news.fake
 
-import android.content.Context
-import android.content.res.Resources
-import io.mockk.every
-import io.mockk.mockk
-import com.example.nowinandroid_clone.R
+import junit.framework.Assert.assertEquals
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Before
 import org.junit.Test
 
@@ -15,38 +13,16 @@ class FakeNewsResourceRepositoryTest {
 
     @Before
     fun setup() {
-        val context = mockk<Context>()
-        val resources = mockk<Resources>()
-        every { resources.openRawResource(R.raw.data) } returns testResourcesJson.byteInputStream()
-        every { context.resources } returns resources
+        subject = FakeNewsResourceRepository(
+            ioDispatcher = TestCoroutineDispatcher()
+        )
     }
 
     @Test
-    fun newsResources() = runBlocking {
-        // TODO: Implement this
-        // assertEquals(listOf<NewsResource>(), subject.monitor().first())
+    fun testDeserializationOfNewsResources() = runBlocking {
+        assertEquals(
+            FakeDataSource.sampleResource,
+            subject.monitor().first().first()
+        )
     }
 }
-
-private val testResourcesJson = """
-        [
-          {
-            "episode": 52,
-            "title": "MAD Skills: Paging Q&A",
-            "content": "In this live session, TJ and Dustin answered your questions in the usual live Q&A format.",
-            "URL": "https://youtu.be/8i6vrlbIVCc",
-            "authorName": "",
-            "publishDate": "2021-11-11T00:00:00.000Z",
-            "type": "Video 📺",
-            "topics": [
-              "MAD Skills",
-              "Paging"
-            ],
-            "alternateVideo": {
-              "URL": "",
-              "startTimestamp": "",
-              "endTimestamp": ""
-            }
-          }
-        ]
-""".trimIndent()

@@ -16,7 +16,7 @@ object Libs {
     const val androidGradlePlugin =
         "com.android.tools.build:gradle:7.0.3"
     const val jdkDesugar =
-        "com.android.tools.desuger_jdk_libs:1.1.5"
+        "com.android.tools:desugar_jdk_libs:1.1.5"
 
     const val junit = "junit:junit:4.13"
 
@@ -66,11 +66,13 @@ object Libs {
             const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
             const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
+            const val navigation = "androidx.navigation:navigation-compose:2.4.0-rc01"
 
             object Material3 {
                 const val snapshot = ""
                 const val version = "1.0.0-alpha01"
 
+                const val icon = "androidx.compose.material:material-icons-extended:${Compose.version}"
                 const val material3 = "androidx.compose.material3:material3:$version"
             }
         }
@@ -85,6 +87,7 @@ object Libs {
             private const val version = "1.4.0"
             const val core = "androidx.test:core:$version"
             const val rules = "androidx.test:rules:$version"
+            const val runner = "androidx.test:runner:$version"
 
             object Ext {
                 private const val version = "1.1.2"

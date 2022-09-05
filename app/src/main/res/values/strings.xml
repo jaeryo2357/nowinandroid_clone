@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">nowInandroid_clone</string>
+    <string name="for_you">For you</string>
+
+    <string name="episodes">Episodes</string>
+    <string name="saved">Saved</string>
+    <string name="topics">Topics</string>
 </resources>

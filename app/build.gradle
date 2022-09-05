@@ -56,6 +56,8 @@ android {
 }
 
 dependencies {
+    coreLibraryDesugaring Libs.jdkDesugar
+
     implementation Libs.Coroutines.android
     implementation Libs.Kotlin.datetime
     implementation Libs.Kotlin.serializationJson
@@ -71,11 +73,15 @@ dependencies {
     implementation Libs.AndroidX.Compose.layout
     // TODO (M3): Remove this dependency when all components are available
     implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.Material3.icon
     implementation Libs.AndroidX.Compose.Material3.material3
     implementation Libs.AndroidX.Compose.tooling
     implementation Libs.AndroidX.Compose.uiUtil
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.runtimeLivedata
+    implementation Libs.AndroidX.Compose.navigation
+
+    implementation Libs.Accompanist.insets
 
     debugImplementation Libs.AndroidX.Compose.uiTestManifest
 
@@ -87,6 +93,7 @@ dependencies {
     androidTestImplementation Libs.junit
     androidTestImplementation Libs.AndroidX.Test.core
     androidTestImplementation Libs.AndroidX.Test.espressoCore
+    androidTestImplementation Libs.AndroidX.Test.runner
     androidTestImplementation Libs.AndroidX.Test.rules
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Compose.uiTest

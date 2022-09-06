@@ -11,6 +11,7 @@ buildscript {
         classpath Libs.androidGradlePlugin
         classpath Libs.Kotlin.gradlePlugin
         classpath Libs.Kotlin.serializationPlugin
+        classpath Libs.DI.hilt_gradle_plugin
     }
 }
 

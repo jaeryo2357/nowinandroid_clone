@@ -5,6 +5,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlinx-serialization'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -82,6 +83,9 @@ dependencies {
     implementation Libs.AndroidX.Compose.navigation
 
     implementation Libs.Accompanist.insets
+    implementation Libs.DI.hilt_android
+    kapt Libs.DI.hilt_compiler
+
 
     debugImplementation Libs.AndroidX.Compose.uiTestManifest
 

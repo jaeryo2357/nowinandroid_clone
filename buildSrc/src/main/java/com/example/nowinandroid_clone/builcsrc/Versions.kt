@@ -27,6 +27,13 @@ object Libs {
         const val insets = "com.google.accompanist:accompanist-insets:$version"
     }
 
+    object DI {
+        private const val version = "2.40.5"
+        const val hilt_android = "com.google.dagger:hilt-android:$version"
+        const val hilt_compiler = "com.google.dagger:hilt-compiler:$version"
+        const val hilt_gradle_plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
+    }
+
     object Kotlin {
         private const val version = "1.6.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"

@@ -23,8 +23,18 @@ object Libs {
     const val material3 = "com.google.android.material:material:1.5.0-alpha05"
 
     object Accompanist {
-        const val version = "0.21.4-beta"
+        private const val version = "0.21.4-beta"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
+        const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$version"
+    }
+
+    object Protobuf {
+        private const val version = "3.19.1"
+        private const val plugin_version = "0.8.18"
+
+        const val profoc = "com.google.protobuf:protoc:$version"
+        const val profoc_kotlin = "com.google.protobuf:protobuf-kotlin-lite:$version"
+        const val plugin = "com.google.protobuf:$plugin_version"
     }
 
     object DI {
@@ -45,7 +55,7 @@ object Libs {
     }
 
     object Coroutines {
-        private const val version = "1.5.2"
+        private const val version = "1.6.0"
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -54,6 +64,7 @@ object Libs {
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.3.0"
         const val coreKtx = "androidx.core:core-ktx:1.7.0"
+        const val dataStore = "androidx.datastore:datastore:1.0.0"
 
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:1.4.0"
@@ -74,10 +85,11 @@ object Libs {
             const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
             const val navigation = "androidx.navigation:navigation-compose:2.4.0-rc01"
+            const val hilt_navigation_compose = "androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
 
             object Material3 {
                 const val snapshot = ""
-                const val version = "1.0.0-alpha01"
+                const val version = "1.0.0-alpha03"
 
                 const val icon = "androidx.compose.material:material-icons-extended:${Compose.version}"
                 const val material3 = "androidx.compose.material3:material3:$version"
@@ -103,6 +115,8 @@ object Libs {
 
             const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
             const val mockk = "io.mockk:mockk:1.12.1"
+
+            const val turbin = "app.cash.turbine:turbine:0.7.0"
         }
 
         object Lifecycle {

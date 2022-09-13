@@ -1,0 +1,10 @@
+
+syntax = "proto3";
+
+option java_package =
+"com.example.nowinandroid_clone.data";
+option java_multiple_files = true;
+
+message UserPreferences {
+  repeated int32 followed_topic_ids = 1;
+}

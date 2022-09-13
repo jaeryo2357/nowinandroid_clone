@@ -6,6 +6,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlinx-serialization'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id "com.google.protobuf" version "0.8.18"
 }
 
 android {
@@ -56,6 +58,24 @@ android {
     }
 }
 
+protobuf {
+    protoc {
+        artifact = Libs.Protobuf.profoc
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+                kotlin {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     coreLibraryDesugaring Libs.jdkDesugar
 
@@ -65,6 +85,7 @@ dependencies {
 
     implementation Libs.AndroidX.Activity.activityCompose
     implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.dataStore
     implementation Libs.AndroidX.appcompat
     implementation Libs.AndroidX.Lifecycle.viewModelCompose
     implementation Libs.AndroidX.Navigation.fragment
@@ -81,11 +102,16 @@ dependencies {
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.runtimeLivedata
     implementation Libs.AndroidX.Compose.navigation
+    implementation Libs.AndroidX.Compose.hilt_navigation_compose
 
+    implementation Libs.Accompanist.flowLayout
     implementation Libs.Accompanist.insets
+
     implementation Libs.DI.hilt_android
     kapt Libs.DI.hilt_compiler
 
+
+    implementation Libs.Protobuf.profoc_kotlin
 
     debugImplementation Libs.AndroidX.Compose.uiTestManifest
 
@@ -93,6 +119,7 @@ dependencies {
     testImplementation Libs.AndroidX.Test.mockk
     testImplementation Libs.AndroidX.Test.core
     testImplementation Libs.Coroutines.test
+    testImplementation Libs.AndroidX.Test.turbin
 
     androidTestImplementation Libs.junit
     androidTestImplementation Libs.AndroidX.Test.core

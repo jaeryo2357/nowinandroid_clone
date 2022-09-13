@@ -20,10 +20,12 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.NoActivityResumedException
+import com.example.nowinandroid_clone.MainActivity
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,19 +35,9 @@ import org.junit.Test
  */
 class NavigationTest {
 
-    /**
-     * Using an empty activity to have control of the content that is set.
-     */
-    @get:Rule
-    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-    @Before
-    fun setUp() {
-        // Using targetContext as the Context of the instrumentation code
-        composeTestRule.setContent {
-            NiaApp()
-        }
-    }
+    @get:Rule
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
     fun firstScreenIsForYou() {
@@ -166,7 +158,7 @@ class NavigationTest {
      * Matches an element at the top of the For You destination. Should be updated when the
      * destination is implemented.
      */
-    private fun ComposeTestRule.forYouDestinationTopMatcher() = onNodeWithText("FOR YOU")
+    private fun ComposeTestRule.forYouDestinationTopMatcher() = onNodeWithTag("FOR YOU")
 
     /*
      * Matches an element at the top of the Topics destination. Should be updated when the

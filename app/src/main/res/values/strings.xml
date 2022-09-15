@@ -7,4 +7,8 @@
     <string name="topics">Topics</string>
     <string name="done">Done</string>
     <string name="for_you_loading">Loading for you..</string>
+
+    <!-- Resource Card -->
+    <string name="bookmark">Bookmark</string>
+    <string name="unbookmark">Unbookmark</string>
 </resources>

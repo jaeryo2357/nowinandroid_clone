@@ -22,7 +22,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.nowinandroid_clone.R
-import com.example.nowinandroid_clone.data.news.NewsResource
+import com.example.nowinandroid_clone.data.model.NewsResource
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable

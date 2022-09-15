@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.example.nowinandroid_clone.TestNewsRepository
 import com.example.nowinandroid_clone.TestTopicsRepository
-import com.example.nowinandroid_clone.data.news.Topic
+import com.example.nowinandroid_clone.data.model.Topic
 import com.example.nowinandroid_clone.testutil.TestDispatcherRule
 import com.example.nowinandroid_clone.ui.foryou.ForYouFeedUiState
 import com.example.nowinandroid_clone.ui.foryou.ForYouViewModel

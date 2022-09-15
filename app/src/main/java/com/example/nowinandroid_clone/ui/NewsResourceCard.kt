@@ -14,7 +14,7 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.nowinandroid_clone.R
-import com.example.nowinandroid_clone.data.news.NewsResource
+import com.example.nowinandroid_clone.data.model.NewsResource
 import com.example.nowinandroid_clone.ui.theme.NiaTheme
 
 @Composable

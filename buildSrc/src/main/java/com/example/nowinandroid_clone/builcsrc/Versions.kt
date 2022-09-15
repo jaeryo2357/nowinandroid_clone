@@ -37,6 +37,11 @@ object Libs {
         const val plugin = "com.google.protobuf:$plugin_version"
     }
 
+    object KSP {
+        const val version = "1.6.0-1.0.1"
+        const val plugin = "com.google.devtools.ksp"
+    }
+
     object DI {
         private const val version = "2.40.5"
         const val hilt_android = "com.google.dagger:hilt-android:$version"
@@ -100,6 +105,12 @@ object Libs {
             private const val version = "2.3.5"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+        }
+
+        object Room {
+            private const val version = "2.4.1"
+            const val roomRuntime = "androidx.room:room-runtime:$version"
+            const val roomCompiler = "androidx.room:room-compiler:$version"
         }
 
         object Test {

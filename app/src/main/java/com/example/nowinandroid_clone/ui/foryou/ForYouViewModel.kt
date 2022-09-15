@@ -6,10 +6,10 @@ import androidx.compose.runtime.snapshots.Snapshot.Companion.withMutableSnapshot
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.nowinandroid_clone.data.news.NewsRepository
-import com.example.nowinandroid_clone.data.news.NewsResource
-import com.example.nowinandroid_clone.data.news.Topic
-import com.example.nowinandroid_clone.data.news.TopicsRepository
+import com.example.nowinandroid_clone.data.repository.NewsRepository
+import com.example.nowinandroid_clone.data.model.NewsResource
+import com.example.nowinandroid_clone.data.model.Topic
+import com.example.nowinandroid_clone.data.repository.TopicsRepository
 import com.example.nowinandroid_clone.ui.saveable
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

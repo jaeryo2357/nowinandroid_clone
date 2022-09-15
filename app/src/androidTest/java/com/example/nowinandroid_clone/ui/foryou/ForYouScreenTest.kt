@@ -6,7 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import org.junit.Rule
 import org.junit.Test
 import com.example.nowinandroid_clone.R
-import com.example.nowinandroid_clone.data.news.Topic
+import com.example.nowinandroid_clone.data.model.Topic
 
 class ForYouScreenTest {
     @get:Rule

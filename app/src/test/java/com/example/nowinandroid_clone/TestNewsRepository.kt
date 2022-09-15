@@ -1,7 +1,7 @@
 package com.example.nowinandroid_clone
 
-import com.example.nowinandroid_clone.data.news.NewsRepository
-import com.example.nowinandroid_clone.data.news.NewsResource
+import com.example.nowinandroid_clone.data.repository.NewsRepository
+import com.example.nowinandroid_clone.data.model.NewsResource
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

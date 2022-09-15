@@ -8,6 +8,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id "com.google.protobuf" version "0.8.18"
+    id "com.google.devtools.ksp" version "1.6.0-1.0.1"
 }
 
 android {
@@ -109,6 +110,9 @@ dependencies {
 
     implementation Libs.DI.hilt_android
     kapt Libs.DI.hilt_compiler
+
+    implementation Libs.AndroidX.Room.roomRuntime
+    ksp Libs.AndroidX.Room.roomCompiler
 
 
     implementation Libs.Protobuf.profoc_kotlin

@@ -41,66 +41,66 @@ fun BookmarkButton(
 }
 
 @Composable
-fun ResourceAuthors(
+fun NewsResourceAuthors(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceHeaderImage(
+fun NewsResourceHeaderImage(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceTitle(
+fun NewsResourceTitle(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceDate(
+fun NewsResourceDate(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceLink(
+fun NewsResourceLink(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceShortDescription(
+fun NewsResourceShortDescription(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceTopics(
+fun NewsResourceTopics(
     newsResource: NewsResource
 ) {
     TODO()
 }
 
 @Composable
-fun ResourceCardExpanded() {
+fun NewsResourceCardExpanded() {
     TODO()
 }
 
 @Preview("Expanded resource card")
 @Preview("Expanded resource card (dark)", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ExpandedResourcePreview() {
+fun ExpandedNewsResourcePreview() {
     NiaTheme {
         Surface {
-            ResourceCardExpanded()
+            NewsResourceCardExpanded()
         }
     }
 }

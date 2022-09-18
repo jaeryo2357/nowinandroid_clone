@@ -31,7 +31,9 @@ interface AppModule {
     ): NiANetwork
 
     @Binds
-    fun bindsTopicRepository(fakeTopicsRepository: FakeTopicsRepository): TopicsRepository
+    fun bindsTopicRepository(
+        fakeTopicsRepository: FakeTopicsRepository
+    ): TopicsRepository
 
     @Binds
     fun bindsNewsResourceRepository(

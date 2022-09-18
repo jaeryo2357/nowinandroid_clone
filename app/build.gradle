@@ -111,6 +111,7 @@ dependencies {
     kapt Libs.DI.hilt_compiler
 
     implementation Libs.AndroidX.Room.roomRuntime
+    implementation Libs.AndroidX.Room.roomKtx
     ksp Libs.AndroidX.Room.roomCompiler
 
 

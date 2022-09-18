@@ -25,4 +25,12 @@ class FakeNiANetworkTest {
             subject.getNewsResources().first()
         )
     }
+
+    @Test
+    fun testDeserializationOfTopics() = runTest {
+        assertEquals(
+            FakeDataSource.sampleTopic,
+            subject.getTopics().first()
+        )
+    }
 }

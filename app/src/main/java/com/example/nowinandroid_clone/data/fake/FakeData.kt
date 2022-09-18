@@ -17,12 +17,18 @@
 package com.example.nowinandroid_clone.data.fake
 
 import com.example.nowinandroid_clone.data.network.NetworkNewsResource
+import com.example.nowinandroid_clone.data.network.NetworkTopic
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import org.intellij.lang.annotations.Language
 
 object FakeDataSource {
+    val sampleTopic = NetworkTopic(
+        id = 0,
+        name = "Headlines",
+        description = ""
+    )
     val sampleResource = NetworkNewsResource(
         id = 1,
         episodeId = 52,

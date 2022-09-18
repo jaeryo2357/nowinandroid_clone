@@ -24,7 +24,6 @@ object Libs {
 
     object Accompanist {
         private const val version = "0.21.4-beta"
-        const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$version"
     }
 
@@ -38,7 +37,7 @@ object Libs {
     }
 
     object KSP {
-        const val version = "1.6.0-1.0.1"
+        const val version = "1.6.10-1.0.2"
         const val plugin = "com.google.devtools.ksp"
     }
 
@@ -50,7 +49,7 @@ object Libs {
     }
 
     object Kotlin {
-        private const val version = "1.6.0"
+        private const val version = "1.6.10"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
@@ -76,8 +75,7 @@ object Libs {
         }
 
         object Compose {
-            const val snapshot = ""
-            const val version = "1.1.0-beta04"
+            const val version = "1.2.0-SNAPSHOT"
 
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"

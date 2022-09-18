@@ -106,7 +106,6 @@ dependencies {
     implementation Libs.AndroidX.Compose.hilt_navigation_compose
 
     implementation Libs.Accompanist.flowLayout
-    implementation Libs.Accompanist.insets
 
     implementation Libs.DI.hilt_android
     kapt Libs.DI.hilt_compiler

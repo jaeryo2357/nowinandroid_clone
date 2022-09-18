@@ -1,5 +1,22 @@
 # nowinandroid_clone
 
+---
+
+```
+├── data
+│   └── model // ui model
+│   └── network // network model
+│   └── local // room
+│       └── entities // room entities, relationship
+│   └── repository // repository
+│   └── fake // fake repositoryImpl
+├── di
+├── ui
+│   └── ...
+│   ...
+└── ...
+```
+
 ## Document
 클론 코딩을 하며 알게된 내용들을 정리해 블로그에 작성 중입니다.
 

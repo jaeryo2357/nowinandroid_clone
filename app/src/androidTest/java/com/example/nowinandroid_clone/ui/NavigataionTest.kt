@@ -120,7 +120,7 @@ class NavigationTest {
         composeTestRule.onNodeWithContentDescription("Navigate up").assertDoesNotExist()
         composeTestRule.onNodeWithText("Saved").performClick()
         composeTestRule.onNodeWithContentDescription("Navigate up").assertDoesNotExist()
-        composeTestRule.onNodeWithText("Topics").performClick()
+        composeTestRule.onNodeWithText("Following").performClick()
         composeTestRule.onNodeWithContentDescription("Navigate up").assertDoesNotExist()
     }
 
@@ -147,7 +147,7 @@ class NavigationTest {
         // GIVEN the user navigated to the Episodes destination
         composeTestRule.onNodeWithText("Episodes").performClick()
         // and then navigated to the Topics destination
-        composeTestRule.onNodeWithText("Topics").performClick()
+        composeTestRule.onNodeWithText("Following").performClick()
         // WHEN the user uses the system button/gesture to go back,
         Espresso.pressBack()
         // THEN the app shows the For You destination
@@ -164,5 +164,5 @@ class NavigationTest {
      * Matches an element at the top of the Topics destination. Should be updated when the
      * destination is implemented.
      */
-    private fun ComposeTestRule.topicsDestinationTopMatcher() = onNodeWithText("TOPICS")
+    private fun ComposeTestRule.followingDestinationTopMatcher() = onNodeWithText("FOLLOWING")
 }

@@ -14,5 +14,6 @@ data class TopicEntity(
     @PrimaryKey
     val id: Int,
     val name: String,
-    val description: String
+    val description: String,
+    val followed: Boolean
 )

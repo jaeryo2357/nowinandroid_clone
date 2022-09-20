@@ -30,6 +30,9 @@ class FakeTopicsRepository @Inject constructor(
     override suspend fun setFollowedTopicIds(followedTopicIds: Set<Int>) =
         niaPreferences.setFollowedTopicIds(followedTopicIds)
 
+    override suspend fun toggleFollowedTopicId(followedTopicId: Int, followed: Boolean) =
+        niaPreferences.toggleFollowTopicId(followedTopicId, followed)
+
     override fun getFollowedTopicIdsStream() =
         niaPreferences.followedTopicIds
 }

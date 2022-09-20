@@ -3,16 +3,12 @@ package com.example.nowinandroid_clone.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AutoStories
-import androidx.compose.material.icons.filled.Bookmarks
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Upcoming
-import androidx.compose.material.icons.outlined.AutoStories
-import androidx.compose.material.icons.outlined.Bookmarks
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material.icons.outlined.Upcoming
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -61,27 +57,31 @@ private fun NiaBottomBar(
     currentRoute: String
 ) {
     Surface(color = MaterialTheme.colorScheme.surface) {
-        NavigationBar(
-            modifier = Modifier.navigationBarsPadding().captionBarPadding(),
-            tonalElevation = 0.dp
-        ) {
-            TOP_LEVEL_DESTINATIONS.forEach { dst ->
-                val selected = currentRoute == dst.route
-                NavigationBarItem(
-                    selected = selected,
-                    onClick = {
-                        navigationActions.navigationToTopLevelDestination(dst.route)
-                    },
-                    icon = {
-                        Icon(
-                            if (selected) dst.selectedIcon else dst.unselectedIcon,
-                            contentDescription = null
-                        )
-                    },
-                    label = {
-                        Text(stringResource(dst.iconTextId))
-                    }
-                )
+        CompositionLocalProvider(LocalRippleTheme provides ClearRippleTheme) {
+            NavigationBar(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .captionBarPadding(),
+                tonalElevation = 0.dp
+            ) {
+                TOP_LEVEL_DESTINATIONS.forEach { dst ->
+                    val selected = currentRoute == dst.route
+                    NavigationBarItem(
+                        selected = selected,
+                        onClick = {
+                            navigationActions.navigationToTopLevelDestination(dst.route)
+                        },
+                        icon = {
+                            Icon(
+                                if (selected) dst.selectedIcon else dst.unselectedIcon,
+                                contentDescription = null
+                            )
+                        },
+                        label = {
+                            Text(stringResource(dst.iconTextId))
+                        }
+                    )
+                }
             }
         }
     }
@@ -114,11 +114,11 @@ private sealed class Destination(
         iconTextId = R.string.saved
     )
 
-    object Topics : Destination(
-        route = NiaDestinations.TOPICS_ROUTE,
-        selectedIcon = Icons.Filled.Favorite,
-        unselectedIcon = Icons.Outlined.FavoriteBorder,
-        iconTextId = R.string.topics
+    object Following : Destination(
+        route = NiaDestinations.FOLLOWING_ROUTE,
+        selectedIcon = Icons.Filled.Grid3x3,
+        unselectedIcon = Icons.Outlined.Grid3x3,
+        iconTextId = R.string.following
     )
 }
 
@@ -126,5 +126,5 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
     Destination.ForYou,
     Destination.Episodes,
     Destination.Saved,
-    Destination.Topics
+    Destination.Following
 )

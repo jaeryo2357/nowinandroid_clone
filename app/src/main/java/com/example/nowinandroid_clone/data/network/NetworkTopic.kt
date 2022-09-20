@@ -7,11 +7,13 @@ import kotlinx.serialization.Serializable
 data class NetworkTopic(
     val id: Int,
     val name: String = "",
-    val description: String = ""
+    val description: String = "",
+    val followed: Boolean = false
 )
 
 fun NetworkTopic.asEntity() = TopicEntity(
     id = id,
     name = name,
-    description = description
+    description = description,
+    followed = followed
 )

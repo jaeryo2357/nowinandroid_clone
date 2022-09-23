@@ -21,7 +21,7 @@ android {
         versionCode Versions.versionCodeBase
         versionName Versions.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.nowinandroid_clone.NiaTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -108,7 +108,8 @@ dependencies {
     implementation Libs.Accompanist.flowLayout
 
     implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
+    androidTestImplementation Libs.DI.hilt_android_testing
+    kaptAndroidTest Libs.DI.hilt_compiler
 
     implementation Libs.AndroidX.Room.roomRuntime
     implementation Libs.AndroidX.Room.roomKtx

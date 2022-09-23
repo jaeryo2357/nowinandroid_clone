@@ -111,19 +111,19 @@ class ForYouScreenTest {
         composeTestRule
             .onNodeWithText("HEADLINES")
             .assertIsDisplayed()
-            // .assertIsOff()
+            .assertIsOff()
             .assertHasClickAction()
 
         composeTestRule
             .onNodeWithText("UI")
             .assertIsDisplayed()
-            // .assertIsOn()
+            .assertIsOn()
             .assertHasClickAction()
 
         composeTestRule
             .onNodeWithText("TOOLS")
             .assertIsDisplayed()
-            // .assertIsOff()
+            .assertIsOff()
             .assertHasClickAction()
 
         composeTestRule

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.MaterialTheme
@@ -18,6 +19,7 @@ import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -109,7 +111,12 @@ private fun LazyListScope.TopicSelection(
                             ButtonDefaults.buttonColors()
                         } else {
                             ButtonDefaults.outlinedButtonColors()
-                        }
+                        },
+                        modifier = Modifier.toggleable(
+                            value = isSelected,
+                            role = Role.Button,
+                            onValueChange = {}
+                        )
                     ) {
                         Text(
                             text = topic.name.uppercase(),

@@ -18,4 +18,5 @@
     <string name="following_topic_card_icon_content_desc">Topic icon</string>
     <string name="following_topic_card_follow_button_content_desc">Follow Topic button</string>
     <string name="following_topic_card_unfollow_button_content_desc">Unfollow Topic button</string>
+    <string name="navigate_up">Navigate up</string>
 </resources>

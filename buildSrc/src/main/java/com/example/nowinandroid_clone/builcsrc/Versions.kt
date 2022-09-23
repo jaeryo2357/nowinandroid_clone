@@ -44,8 +44,9 @@ object Libs {
     object DI {
         private const val version = "2.40.5"
         const val hilt_android = "com.google.dagger:hilt-android:$version"
-        const val hilt_compiler = "com.google.dagger:hilt-compiler:$version"
+        const val hilt_compiler = "com.google.dagger:hilt-android-compiler:$version"
         const val hilt_gradle_plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
+        const val hilt_android_testing = "com.google.dagger:hilt-android-testing:$version"
     }
 
     object Kotlin {

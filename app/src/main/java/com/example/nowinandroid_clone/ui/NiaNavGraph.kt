@@ -22,7 +22,7 @@ fun NiaNavGraph(
        startDestination = startDestination
    )  {
        composable(NiaDestinations.FOR_YOU_ROUTE) {
-           ForYouRoute(modifier = modifier.testTag("FOR YOU"))
+           ForYouRoute(modifier)
        }
        composable(NiaDestinations.EPISODES_ROUTE) {
            Text("EPISODES", modifier)
@@ -35,7 +35,7 @@ fun NiaNavGraph(
                navigateToTopic = {
                    navController.navigate(NiaDestinations.TOPICS_ROUTE)
                },
-               modifier = modifier.testTag(NiaDestinations.FOLLOWING_ROUTE)
+               modifier = modifier
            )
        }
        composable(NiaDestinations.TOPICS_ROUTE) {

@@ -108,8 +108,7 @@ dependencies {
     implementation Libs.Accompanist.flowLayout
 
     implementation Libs.DI.hilt_android
-    androidTestImplementation Libs.DI.hilt_android_testing
-    kaptAndroidTest Libs.DI.hilt_compiler
+    kapt Libs.DI.hilt_compiler
 
     implementation Libs.AndroidX.Room.roomRuntime
     implementation Libs.AndroidX.Room.roomKtx
@@ -133,6 +132,8 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.rules
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Compose.uiTest
+    androidTestImplementation Libs.DI.hilt_android_testing
+    kaptAndroidTest Libs.DI.hilt_compiler
 
     configurations.configureEach {
         resolutionStrategy {

@@ -161,7 +161,7 @@ class NavigationTest {
     fun navigationBar_backFromAnyDestination_returnsToForYou() {
         composeTestRule.apply {
             waitUntil {
-                onAllNodes(hasText("HEADLINES")).fetchSemanticsNodes().isEmpty()
+                onAllNodes(hasText("HEADLINES")).fetchSemanticsNodes().isNotEmpty()
             }
 
             onNodeWithText(episodes).performClick()

@@ -3,13 +3,12 @@ package com.example.nowinandroid_clone.ui
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.nowinandroid_clone.ui.following.FollowingRoute
-import com.example.nowinandroid_clone.ui.foryou.ForYouRoute
+import com.example.nowinandroid_clone.feature.following.FollowingRoute
+import com.example.nowinandroid_clone.feature.foryou.ForYouRoute
 
 @Composable
 fun NiaNavGraph(

@@ -57,13 +57,13 @@ object Libs {
         const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.1"
         const val serializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:$version"
         const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1"
-    }
 
-    object Coroutines {
-        private const val version = "1.6.0"
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+        object Coroutines {
+            private const val version = "1.6.0"
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+        }
     }
 
     object AndroidX {
@@ -90,6 +90,7 @@ object Libs {
             const val uiUtil = "androidx.compose.ui:ui-util:$version"
             const val navigation = "androidx.navigation:navigation-compose:2.4.0-rc01"
             const val hilt_navigation_compose = "androidx.hilt:hilt-navigation-compose:1.0.0-rc01"
+            const val preview = "androidx.compose.ui:ui-tooling-preview:$version"
 
             object Material3 {
                 const val snapshot = ""

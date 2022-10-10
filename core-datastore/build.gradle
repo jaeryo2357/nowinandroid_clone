@@ -1,0 +1,58 @@
+import com.example.nowinandroid_clone.builcsrc.Libs
+import com.example.nowinandroid_clone.builcsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id "com.google.protobuf" version "0.8.18"
+}
+
+android {
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = Libs.Protobuf.profoc
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+                kotlin {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation project(':core-testing')
+
+
+    implementation Libs.Kotlin.Coroutines.android
+
+    implementation Libs.AndroidX.dataStore
+
+    implementation Libs.Protobuf.profoc_kotlin
+
+    implementation Libs.DI.hilt_android
+    kapt Libs.DI.hilt_compiler
+}

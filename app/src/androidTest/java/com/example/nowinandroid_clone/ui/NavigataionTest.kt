@@ -20,6 +20,7 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.NoActivityResumedException
+import com.example.nowinandroid_clone.R
 import com.example.nowinandroid_clone.MainActivity
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -27,7 +28,6 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import com.example.nowinandroid_clone.R
 import org.junit.rules.TemporaryFolder
 
 /**

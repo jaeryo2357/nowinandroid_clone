@@ -1,0 +1,43 @@
+import com.example.nowinandroid_clone.builcsrc.Libs
+import com.example.nowinandroid_clone.builcsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(":core-datastore")
+    implementation project(":core-testing")
+
+    implementation Libs.AndroidX.dataStore
+
+    implementation Libs.DI.hilt_android
+    kapt Libs.DI.hilt_compiler
+    kaptAndroidTest Libs.DI.hilt_compiler
+
+    configurations.configureEach {
+        resolutionStrategy {
+            // Temporary workaround for https://issuetracker.google.com/174733673
+            force 'org.objenesis:objenesis:2.6'
+        }
+    }
+}

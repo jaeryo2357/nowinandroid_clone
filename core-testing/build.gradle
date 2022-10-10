@@ -1,0 +1,53 @@
+import com.example.nowinandroid_clone.builcsrc.Libs
+import com.example.nowinandroid_clone.builcsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(":core-domain")
+    implementation project(":core-model")
+
+    debugApi Libs.AndroidX.Compose.uiTestManifest
+
+    api Libs.AndroidX.Test.Ext.junit
+    api Libs.AndroidX.Test.mockk
+    api Libs.AndroidX.Test.core
+    api Libs.Kotlin.Coroutines.test
+    api Libs.AndroidX.Test.turbin
+
+    api Libs.junit
+    api Libs.AndroidX.Test.core
+    api Libs.AndroidX.Test.espressoCore
+    api Libs.AndroidX.Test.runner
+    api Libs.AndroidX.Test.rules
+    api Libs.AndroidX.Test.Ext.junit
+    api Libs.AndroidX.Compose.uiTest
+    api Libs.DI.hilt_android_testing
+
+    configurations.configureEach {
+        resolutionStrategy {
+            // Temporary workaround for https://issuetracker.google.com/174733673
+            force 'org.objenesis:objenesis:2.6'
+        }
+    }
+}

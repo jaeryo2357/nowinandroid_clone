@@ -1,0 +1,47 @@
+import com.example.nowinandroid_clone.builcsrc.Libs
+import com.example.nowinandroid_clone.builcsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+    }
+}
+
+dependencies {
+    implementation project(":core-model")
+
+    implementation Libs.AndroidX.coreKtx
+    implementation Libs.Kotlin.datetime
+
+    api Libs.AndroidX.Compose.layout
+    // TODO (M3): Remove this dependency when all components are available
+    api Libs.AndroidX.Compose.material
+    api Libs.AndroidX.Compose.Material3.icon
+    api Libs.AndroidX.Compose.Material3.material3
+    debugApi Libs.AndroidX.Compose.tooling
+    api Libs.AndroidX.Compose.preview
+    api Libs.AndroidX.Compose.uiUtil
+    api Libs.AndroidX.Compose.runtime
+    api Libs.AndroidX.Compose.runtimeLivedata
+}

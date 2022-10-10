@@ -1,0 +1,38 @@
+import com.example.nowinandroid_clone.builcsrc.Libs
+import com.example.nowinandroid_clone.builcsrc.Versions
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlinx-serialization'
+    id "com.google.devtools.ksp" version "1.6.0-1.0.1"
+}
+
+android {
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+        minSdk Versions.minSdk
+        targetSdk Versions.targetSdk
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    testImplementation project(':core-testing')
+
+    implementation Libs.AndroidX.Room.roomRuntime
+    implementation Libs.AndroidX.Room.roomKtx
+    ksp Libs.AndroidX.Room.roomCompiler
+
+    implementation Libs.Kotlin.datetime
+    implementation Libs.Kotlin.Coroutines.android
+    implementation Libs.Kotlin.serializationJson
+}

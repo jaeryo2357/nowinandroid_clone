@@ -4,11 +4,8 @@ import com.example.nowinandroid_clone.builcsrc.Versions
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlinx-serialization'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id "com.google.protobuf" version "0.8.18"
-    id "com.google.devtools.ksp" version "1.6.0-1.0.1"
 }
 
 android {
@@ -21,7 +18,7 @@ android {
         versionCode Versions.versionCodeBase
         versionName Versions.versionName
 
-        testInstrumentationRunner "com.example.nowinandroid_clone.NiaTestRunner"
+        testInstrumentationRunner "com.example.nowinandroid_clone.core.testing.NiaTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -40,6 +37,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
     }
     buildFeatures {
         compose true
@@ -59,85 +57,33 @@ android {
     }
 }
 
-protobuf {
-    protoc {
-        artifact = Libs.Protobuf.profoc
-    }
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option "lite"
-                }
-                kotlin {
-                    option "lite"
-                }
-            }
-        }
-    }
-}
-
 dependencies {
-    coreLibraryDesugaring Libs.jdkDesugar
+    implementation project(':feature-following')
+    implementation project(':feature-foryou')
 
-    implementation Libs.Coroutines.android
-    implementation Libs.Kotlin.datetime
-    implementation Libs.Kotlin.serializationJson
+    implementation project(':core-ui')
+
+    androidTestImplementation project(':core-testing')
+    implementation project(':core-datastore-test')
+
+    coreLibraryDesugaring Libs.jdkDesugar
 
     implementation Libs.AndroidX.Activity.activityCompose
     implementation Libs.AndroidX.coreKtx
-    implementation Libs.AndroidX.dataStore
     implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.Lifecycle.viewModelCompose
-    implementation Libs.AndroidX.Navigation.fragment
-    implementation Libs.AndroidX.Navigation.uiKtx
-    implementation Libs.material3
-
-    implementation Libs.AndroidX.Compose.layout
-    // TODO (M3): Remove this dependency when all components are available
-    implementation Libs.AndroidX.Compose.material
-    implementation Libs.AndroidX.Compose.Material3.icon
-    implementation Libs.AndroidX.Compose.Material3.material3
-    implementation Libs.AndroidX.Compose.tooling
-    implementation Libs.AndroidX.Compose.uiUtil
-    implementation Libs.AndroidX.Compose.runtime
-    implementation Libs.AndroidX.Compose.runtimeLivedata
-    implementation Libs.AndroidX.Compose.navigation
     implementation Libs.AndroidX.Compose.hilt_navigation_compose
-
-    implementation Libs.Accompanist.flowLayout
+    implementation Libs.AndroidX.Compose.navigation
+    implementation Libs.material3
 
     implementation Libs.DI.hilt_android
     kapt Libs.DI.hilt_compiler
 
-    implementation Libs.AndroidX.Room.roomRuntime
-    implementation Libs.AndroidX.Room.roomKtx
-    ksp Libs.AndroidX.Room.roomCompiler
-
-
-    implementation Libs.Protobuf.profoc_kotlin
-
-    debugImplementation Libs.AndroidX.Compose.uiTestManifest
-
-    testImplementation Libs.AndroidX.Test.Ext.junit
-    testImplementation Libs.AndroidX.Test.mockk
-    testImplementation Libs.AndroidX.Test.core
-    testImplementation Libs.Coroutines.test
-    testImplementation Libs.AndroidX.Test.turbin
-
-    androidTestImplementation Libs.junit
-    androidTestImplementation Libs.AndroidX.Test.core
-    androidTestImplementation Libs.AndroidX.Test.espressoCore
-    androidTestImplementation Libs.AndroidX.Test.runner
-    androidTestImplementation Libs.AndroidX.Test.rules
-    androidTestImplementation Libs.AndroidX.Test.Ext.junit
-    androidTestImplementation Libs.AndroidX.Compose.uiTest
-    androidTestImplementation Libs.DI.hilt_android_testing
     kaptAndroidTest Libs.DI.hilt_compiler
 
     configurations.configureEach {
         resolutionStrategy {
             force Libs.junit
+            force 'org.objenesis:objenesis:2.6'
         }
     }
 }

@@ -1,6 +1,12 @@
-package com.example.nowinandroid_clone.core.model
+package com.example.nowinandroid_clone.core.domain.model
 
-import com.example.nowinandroid_clone.core.model.network.*
+import com.example.nowinandroid_clone.core.model.data.NewsResourceType
+import com.example.nowinandroid_clone.core.network.model.NetworkAuthor
+import com.example.nowinandroid_clone.core.network.model.NetworkEpisode
+import com.example.nowinandroid_clone.core.network.model.NetworkEpisodeExpanded
+import com.example.nowinandroid_clone.core.network.model.NetworkNewsResource
+import com.example.nowinandroid_clone.core.network.model.NetworkNewsResourceExpanded
+import com.example.nowinandroid_clone.core.network.model.NetworkTopic
 import kotlinx.datetime.Instant
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -44,7 +50,7 @@ class NetworkEntityKtTest {
             content = "content",
             url = "url",
             publishDate = Instant.fromEpochMilliseconds(1),
-            type = com.example.nowinandroid_clone.core.model.data.NewsResourceType.Article.displayText,
+            type = NewsResourceType.Article,
         )
         val entity = networkModel.asEntity()
 
@@ -54,7 +60,7 @@ class NetworkEntityKtTest {
         assertEquals("content", entity.content)
         assertEquals("url", entity.url)
         assertEquals(Instant.fromEpochMilliseconds(1), entity.publishDate)
-        assertEquals(com.example.nowinandroid_clone.core.model.data.NewsResourceType.Article.displayText, entity.type)
+        assertEquals(NewsResourceType.Article, entity.type)
 
         val expandedNetworkModel = NetworkNewsResourceExpanded(
             id = 0,
@@ -63,7 +69,7 @@ class NetworkEntityKtTest {
             content = "content",
             url = "url",
             publishDate = Instant.fromEpochMilliseconds(1),
-            type = com.example.nowinandroid_clone.core.model.data.NewsResourceType.Article.displayText,
+            type = NewsResourceType.Article,
         )
 
         val entityFromExpanded = expandedNetworkModel.asEntity()
@@ -74,7 +80,7 @@ class NetworkEntityKtTest {
         assertEquals("content", entityFromExpanded.content)
         assertEquals("url", entityFromExpanded.url)
         assertEquals(Instant.fromEpochMilliseconds(1), entityFromExpanded.publishDate)
-        assertEquals(com.example.nowinandroid_clone.core.model.data.NewsResourceType.Article.displayText, entityFromExpanded.type)
+        assertEquals(NewsResourceType.Article, entityFromExpanded.type)
     }
 
     @Test

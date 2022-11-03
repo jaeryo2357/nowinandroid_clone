@@ -1,9 +1,11 @@
-package com.example.nowinandroid_clone.core.model.entities
+package com.example.nowinandroid_clone.core.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.nowinandroid_clone.core.model.data.NewsResource
+import com.example.nowinandroid_clone.core.model.data.NewsResourceType
 import kotlinx.datetime.Instant
 
 @Entity(
@@ -27,5 +29,17 @@ data class NewsResourceEntity(
     val url: String,
     @ColumnInfo(name = "publish_date")
     val publishDate: Instant,
-    val type: String
+    val type: NewsResourceType
+)
+
+fun NewsResourceEntity.asExternalModel() = NewsResource(
+    id = id,
+    episodeId = episodeId,
+    title = title,
+    content = content,
+    url = url,
+    publishDate = publishDate,
+    type = type,
+    authors = listOf(),
+    topics = listOf()
 )

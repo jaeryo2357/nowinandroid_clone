@@ -1,4 +1,4 @@
-package com.example.nowinandroid_clone.core.model.network
+package com.example.nowinandroid_clone.core.network.util
 
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant

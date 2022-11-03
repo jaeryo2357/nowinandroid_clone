@@ -1,9 +1,9 @@
 package com.example.nowinandroid_clone.core.network.fake
 
-import com.example.nowinandroid_clone.core.model.network.NetworkNewsResource
-import com.example.nowinandroid_clone.core.model.network.NetworkTopic
+import com.example.nowinandroid_clone.core.network.model.NetworkNewsResource
 import com.example.nowinandroid_clone.core.network.NiANetwork
 import com.example.nowinandroid_clone.core.network.NiaDispatchers
+import com.example.nowinandroid_clone.core.network.model.NetworkTopic
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString

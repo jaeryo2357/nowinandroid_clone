@@ -16,8 +16,9 @@
 
 package com.example.nowinandroid_clone.core.network.fake
 
-import com.example.nowinandroid_clone.core.model.network.NetworkNewsResource
-import com.example.nowinandroid_clone.core.model.network.NetworkTopic
+import com.example.nowinandroid_clone.core.model.data.NewsResourceType
+import com.example.nowinandroid_clone.core.network.model.NetworkNewsResource
+import com.example.nowinandroid_clone.core.network.model.NetworkTopic
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
@@ -45,7 +46,7 @@ object FakeDataSource {
             second = 0,
             nanosecond = 0
         ).toInstant(TimeZone.UTC),
-        type = "Video \uD83D\uDCFA",
+        type = NewsResourceType.Video,
         topics = listOf(0),
     )
 

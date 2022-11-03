@@ -7,9 +7,15 @@ import com.example.nowinandroid_clone.core.database.dao.AuthorDao
 import com.example.nowinandroid_clone.core.database.dao.EpisodeDao
 import com.example.nowinandroid_clone.core.database.dao.NewsResourceDao
 import com.example.nowinandroid_clone.core.database.dao.TopicDao
+import com.example.nowinandroid_clone.core.database.model.AuthorEntity
+import com.example.nowinandroid_clone.core.database.model.EpisodeAuthorCrossRef
+import com.example.nowinandroid_clone.core.database.model.EpisodeEntity
+import com.example.nowinandroid_clone.core.database.model.NewsResourceAuthorCrossRef
+import com.example.nowinandroid_clone.core.database.model.NewsResourceEntity
+import com.example.nowinandroid_clone.core.database.model.NewsResourceTopicCrossRef
+import com.example.nowinandroid_clone.core.database.model.TopicEntity
 import com.example.nowinandroid_clone.core.database.utilities.InstantConverter
 import com.example.nowinandroid_clone.core.database.utilities.NewsResourceTypeConverter
-import com.example.nowinandroid_clone.core.model.entities.*
 
 @Database(
     entities = [

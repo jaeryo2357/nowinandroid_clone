@@ -1,8 +1,9 @@
-package com.example.nowinandroid_clone.core.model.entities
+package com.example.nowinandroid_clone.core.database.model
 
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.example.nowinandroid_clone.core.model.data.Topic
 
 @Entity(
     tableName = "topics",
@@ -16,4 +17,11 @@ data class TopicEntity(
     val name: String,
     val description: String,
     val followed: Boolean
+)
+
+fun TopicEntity.asExternalModel() = Topic(
+    id = id,
+    name = name,
+    description = description,
+    followed = followed,
 )

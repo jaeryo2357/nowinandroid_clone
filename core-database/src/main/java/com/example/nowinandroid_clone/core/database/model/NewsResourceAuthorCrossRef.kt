@@ -1,4 +1,4 @@
-package com.example.nowinandroid_clone.core.model.entities
+package com.example.nowinandroid_clone.core.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -15,7 +15,7 @@ import androidx.room.ForeignKey
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
-            entity = AuthorEntity::class,
+            entity = com.example.nowinandroid_clone.core.database.model.AuthorEntity::class,
             parentColumns = ["id"],
             childColumns = ["author_id"],
             onDelete = ForeignKey.CASCADE

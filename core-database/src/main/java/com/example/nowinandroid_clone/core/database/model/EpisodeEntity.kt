@@ -1,4 +1,4 @@
-package com.example.nowinandroid_clone.core.model.entities
+package com.example.nowinandroid_clone.core.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

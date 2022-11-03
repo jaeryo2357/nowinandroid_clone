@@ -1,13 +1,11 @@
-package com.example.nowinandroid_clone.core.model.network
+package com.example.nowinandroid_clone.core.network.model
 
-import androidx.room.PrimaryKey
-import com.example.nowinandroid_clone.core.model.entities.EpisodeEntity
+import com.example.nowinandroid_clone.core.network.util.InstantSerializer
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class NetworkEpisode(
-    @PrimaryKey
     val id: Int,
     val name: String,
     @Serializable(InstantSerializer::class)
@@ -20,7 +18,6 @@ data class NetworkEpisode(
 
 @Serializable
 data class NetworkEpisodeExpanded(
-    @PrimaryKey
     val id: Int,
     val name: String,
     @Serializable(InstantSerializer::class)
@@ -29,20 +26,4 @@ data class NetworkEpisodeExpanded(
     val alternateAudio: String,
     val newsResources: List<NetworkNewsResource> = listOf(),
     val authors: List<NetworkAuthor> = listOf(),
-)
-
-fun NetworkEpisode.asEntity() = EpisodeEntity(
-    id = id,
-    name = name,
-    publishDate = publishDate,
-    alternateVideo = alternateVideo,
-    alternateAudio = alternateAudio,
-)
-
-fun NetworkEpisodeExpanded.asEntity() = EpisodeEntity(
-    id = id,
-    name = name,
-    publishDate = publishDate,
-    alternateVideo = alternateVideo,
-    alternateAudio = alternateAudio,
 )

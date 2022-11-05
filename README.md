@@ -2,19 +2,22 @@
 
 ---
 
+### Core
 ```
-├── data
-│   └── model // ui model
-│   └── network // network model
-│   └── local // room
-│       └── entities // room entities, relationship
-│   └── repository // repository
-│   └── fake // fake repositoryImpl
-├── di
-├── ui
+core
+├── common
+├── database
+│   └── model // Entities, Room 관계형 Models
+├── datastore
+│   └── di
+├── network // Network 필요한 파일
+│   └── model // Network 파싱 Models
+├── domain
+│   └── model // 
+│   └── test // database, domain mapping 함수 테스트
+├── ui // compose 환경변수, 공통 composable
 │   └── ...
-│   ...
-└── ...
+└── testing // test 환경에 필요한 정보
 ```
 
 ## Document

@@ -51,7 +51,9 @@ dependencies {
 
     implementation Libs.AndroidX.dataStore
 
-    implementation Libs.Protobuf.profoc_kotlin
+    implementation (Libs.Protobuf.profoc_kotlin) {
+        exclude group: "org.jetbrains.kotlin", module: "kotlin-test"
+    }
 
     implementation Libs.DI.hilt_android
     kapt Libs.DI.hilt_compiler

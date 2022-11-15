@@ -64,7 +64,7 @@ dependencies {
     implementation project(':core-ui')
 
     androidTestImplementation project(':core-testing')
-    implementation project(':core-datastore-test')
+    androidTestImplementation project(':core-datastore-test')
 
     coreLibraryDesugaring Libs.jdkDesugar
 

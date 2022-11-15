@@ -1,7 +1,8 @@
-package com.example.nowinandroid_clone.core.domain.repository
+package com.example.nowinandroid_clone.core.domain.repository.fake
 
 import com.example.nowinandroid_clone.core.model.data.Topic
 import com.example.nowinandroid_clone.core.datastore.NiaPreferences
+import com.example.nowinandroid_clone.core.domain.repository.TopicsRepository
 import com.example.nowinandroid_clone.core.network.NiaDispatchers
 import com.example.nowinandroid_clone.core.network.fake.FakeDataSource
 import kotlinx.coroutines.flow.Flow
@@ -36,4 +37,6 @@ class FakeTopicsRepository @Inject constructor(
 
     override fun getFollowedTopicIdsStream() =
         niaPreferences.followedTopicIds
+
+    override suspend fun sync(): Boolean = true
 }

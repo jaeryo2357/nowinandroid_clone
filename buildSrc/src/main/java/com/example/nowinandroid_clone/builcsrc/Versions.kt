@@ -66,6 +66,11 @@ object Libs {
         }
     }
 
+    object Network {
+        const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:4.9.3"
+        const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+    }
+
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.3.0"
         const val coreKtx = "androidx.core:core-ktx:1.7.0"

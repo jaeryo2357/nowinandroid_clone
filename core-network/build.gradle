@@ -34,6 +34,9 @@ dependencies {
     implementation Libs.Kotlin.datetime
     implementation Libs.Kotlin.serializationJson
 
+    implementation Libs.Network.retrofit
+    implementation Libs.Network.okhttpLogging
+
     implementation Libs.DI.hilt_android
     kapt Libs.DI.hilt_compiler
 }

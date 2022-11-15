@@ -22,6 +22,8 @@ class TestNewsRepository : NewsRepository {
             }
         }
 
+    override suspend fun sync(): Boolean = true
+
     fun sendNewsResources(newsResources: List<NewsResource>) {
         newsResourceFlow.tryEmit(newsResources)
     }

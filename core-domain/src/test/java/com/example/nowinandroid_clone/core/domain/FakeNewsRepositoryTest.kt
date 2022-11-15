@@ -1,6 +1,6 @@
 package com.example.nowinandroid_clone.core.domain
 
-import com.example.nowinandroid_clone.core.domain.repository.FakeNewsRepository
+import com.example.nowinandroid_clone.core.domain.repository.fake.FakeNewsRepository
 import com.example.nowinandroid_clone.core.network.DefaultNiaDispatchers
 import kotlinx.serialization.json.Json
 import org.junit.Before

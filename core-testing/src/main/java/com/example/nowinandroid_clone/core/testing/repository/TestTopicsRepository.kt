@@ -36,6 +36,8 @@ class TestTopicsRepository :
 
     override fun getFollowedTopicIdsStream(): Flow<Set<Int>> = _followedTopicIds
 
+    override suspend fun sync(): Boolean = true
+
     /**
      * A test-only API to allow controlling the list of topics from tests.
      */

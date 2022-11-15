@@ -1,7 +1,7 @@
 package com.example.nowinandroid_clone.core.domain.di
 
-import com.example.nowinandroid_clone.core.domain.repository.FakeNewsRepository
-import com.example.nowinandroid_clone.core.domain.repository.FakeTopicsRepository
+import com.example.nowinandroid_clone.core.domain.repository.fake.FakeNewsRepository
+import com.example.nowinandroid_clone.core.domain.repository.fake.FakeTopicsRepository
 import com.example.nowinandroid_clone.core.domain.repository.NewsRepository
 import com.example.nowinandroid_clone.core.domain.repository.TopicsRepository
 import dagger.Binds

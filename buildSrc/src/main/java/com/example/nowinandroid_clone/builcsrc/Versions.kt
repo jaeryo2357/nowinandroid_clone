@@ -42,7 +42,7 @@ object Libs {
     }
 
     object DI {
-        private const val version = "2.40.5"
+        private const val version = "2.41"
         const val hilt_android = "com.google.dagger:hilt-android:$version"
         const val hilt_compiler = "com.google.dagger:hilt-android-compiler:$version"
         const val hilt_gradle_plugin = "com.google.dagger:hilt-android-gradle-plugin:$version"

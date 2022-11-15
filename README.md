@@ -28,6 +28,7 @@ core
 |---|---|
 |[RepositoriesMode](https://jaeryo2357.tistory.com/110)|Repository 종속성 관리|
 |[Spotless](https://jaeryo2357.tistory.com/113)|Spotless로 코드 포맷팅|
+|[Speed Up Android](https://jaeryo2357.tistory.com/116)|Gradle 빌드 속도 개선|
 
 
 ### 🥝 Compose

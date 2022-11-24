@@ -71,10 +71,6 @@ class NavigationTest {
     @Test
     fun firstScreen_isForYou() {
         composeTestRule.apply {
-            waitUntil {
-                onAllNodes(hasText("HEADLINES")).fetchSemanticsNodes()
-                    .isNotEmpty()
-            }
             onNodeWithText("HEADLINES").assertExists()
         }
     }
@@ -97,9 +93,6 @@ class NavigationTest {
     @Test
     fun navigationBar_navigateToPreviouslySelectedTab_restoreContent() {
         composeTestRule.apply {
-            waitUntil {
-                onAllNodes(hasText("HEADLINES")).fetchSemanticsNodes().isNotEmpty()
-            }
 
             onNodeWithText("HEADLINES").performClick()
 
@@ -114,9 +107,6 @@ class NavigationTest {
     @Test
     fun navigationBar_reselectTab_keepsState() {
         composeTestRule.apply {
-            waitUntil {
-                onAllNodes(hasText("HEADLINES")).fetchSemanticsNodes().isNotEmpty()
-            }
             onNodeWithText("HEADLINES").performClick()
             onNodeWithText(forYou).performClick()
             onNodeWithText("HEADLINES").assertIsOn()
@@ -160,9 +150,6 @@ class NavigationTest {
     @Test
     fun navigationBar_backFromAnyDestination_returnsToForYou() {
         composeTestRule.apply {
-            waitUntil {
-                onAllNodes(hasText("HEADLINES")).fetchSemanticsNodes().isNotEmpty()
-            }
 
             onNodeWithText(episodes).performClick()
 

@@ -1,8 +1,6 @@
 package com.example.nowinandroid_clone.core.network.di
 
-import com.example.nowinandroid_clone.core.network.DefaultNiaDispatchers
 import com.example.nowinandroid_clone.core.network.NiANetwork
-import com.example.nowinandroid_clone.core.network.NiaDispatchers
 import com.example.nowinandroid_clone.core.network.fake.FakeNiANetwork
 import dagger.Binds
 import dagger.Module
@@ -20,9 +18,6 @@ interface NetworkModule {
     fun bindsNiANetwork(
         fakeNiANetwork: FakeNiANetwork
     ): NiANetwork
-
-    @Binds
-    fun bindsNiaDispatchers(defaultNiaDispatchers: DefaultNiaDispatchers): NiaDispatchers
 
     companion object {
         @Provides

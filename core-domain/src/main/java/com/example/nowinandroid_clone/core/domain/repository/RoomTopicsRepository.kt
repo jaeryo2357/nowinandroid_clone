@@ -1,5 +1,7 @@
 package com.example.nowinandroid_clone.core.domain.repository
 
+import com.example.nowinandroid_clone.core.common.network.Dispatcher
+import com.example.nowinandroid_clone.core.common.network.NiaDispatchers
 import com.example.nowinandroid_clone.core.database.dao.TopicDao
 import com.example.nowinandroid_clone.core.database.model.TopicEntity
 import com.example.nowinandroid_clone.core.database.model.asExternalModel
@@ -7,15 +9,15 @@ import com.example.nowinandroid_clone.core.datastore.NiaPreferences
 import com.example.nowinandroid_clone.core.domain.model.asEntity
 import com.example.nowinandroid_clone.core.model.data.Topic
 import com.example.nowinandroid_clone.core.network.NiANetwork
-import com.example.nowinandroid_clone.core.network.NiaDispatchers
 import com.example.nowinandroid_clone.core.network.model.NetworkTopic
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.concurrent.CancellationException
 import javax.inject.Inject
 
 class RoomTopicsRepository @Inject constructor(
-    private val dispatchers: NiaDispatchers,
+    @Dispatcher(NiaDispatchers.IO) ioDispatcher: CoroutineDispatcher,
     private val topicDao: TopicDao,
     private val network: NiANetwork,
     private val niaPreferences: NiaPreferences

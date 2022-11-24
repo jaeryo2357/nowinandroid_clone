@@ -24,8 +24,12 @@ android {
 }
 
 dependencies {
+    implementation project(':core-common')
     implementation project(":core-domain")
     implementation project(":core-model")
+
+    implementation Libs.DI.hilt_android
+    kapt Libs.DI.hilt_compiler
 
     debugApi Libs.AndroidX.Compose.uiTestManifest
 

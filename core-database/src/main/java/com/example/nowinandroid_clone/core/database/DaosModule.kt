@@ -1,5 +1,9 @@
 package com.example.nowinandroid_clone.core.database
 
+import com.example.nowinandroid_clone.core.database.dao.AuthorDao
+import com.example.nowinandroid_clone.core.database.dao.EpisodeDao
+import com.example.nowinandroid_clone.core.database.dao.NewsResourceDao
+import com.example.nowinandroid_clone.core.database.dao.TopicDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,21 +14,21 @@ import dagger.hilt.components.SingletonComponent
 object DaosModule {
     @Provides
     fun providesAuthorDao(
-        database: com.example.nowinandroid_clone.core.database.NiADatabase
-    ): com.example.nowinandroid_clone.core.database.dao.AuthorDao = database.authorDao()
+        database: NiADatabase
+    ): AuthorDao = database.authorDao()
 
     @Provides
     fun providesTopicsDao(
-        database: com.example.nowinandroid_clone.core.database.NiADatabase,
-    ): com.example.nowinandroid_clone.core.database.dao.TopicDao = database.topicDao()
+        database: NiADatabase,
+    ): TopicDao = database.topicDao()
 
     @Provides
     fun providesEpisodeDao(
-        database: com.example.nowinandroid_clone.core.database.NiADatabase,
-    ): com.example.nowinandroid_clone.core.database.dao.EpisodeDao = database.episodeDao()
+        database: NiADatabase,
+    ): EpisodeDao = database.episodeDao()
 
     @Provides
     fun providesNewsResourceDao(
-        database: com.example.nowinandroid_clone.core.database.NiADatabase,
-    ): com.example.nowinandroid_clone.core.database.dao.NewsResourceDao = database.newsResourceDao()
+        database: NiADatabase,
+    ): NewsResourceDao = database.newsResourceDao()
 }

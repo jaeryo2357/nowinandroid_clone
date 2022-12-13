@@ -2,6 +2,7 @@ package com.example.nowinandroid_clone.core.testing.repository
 
 import com.example.nowinandroid_clone.core.domain.repository.NewsRepository
 import com.example.nowinandroid_clone.core.model.data.NewsResource
+import com.example.nowinandroid_clone.core.model.data.Topic
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +19,7 @@ class TestNewsRepository : NewsRepository {
     override fun getNewsResourcesStream(filterTopicIds: Set<Int>): Flow<List<NewsResource>> =
         getNewsResourcesStream().map { newsResources ->
             newsResources.filter {
-                it.topics.intersect(filterTopicIds).isNotEmpty()
+                it.topics.map(Topic::id).intersect(filterTopicIds).isNotEmpty()
             }
         }
 

@@ -1,6 +1,7 @@
 package com.example.nowinandroid_clone.feature.following
 
 import app.cash.turbine.test
+import com.example.nowinandroid_clone.core.model.data.FollowableTopic
 import com.example.nowinandroid_clone.core.testing.repository.TestTopicsRepository
 import com.example.nowinandroid_clone.core.model.data.Topic
 import com.example.nowinandroid_clone.core.testing.util.TestDispatcherRule
@@ -48,12 +49,12 @@ class FollowingViewModelTest {
     fun uiState_whenFollowingNewTopic_thenShowUpdateTopics() = runTest {
         viewModel.uiState.test {
             awaitItem()
-            topicsRepository.sendTopics(testInputTopics)
-            topicsRepository.setFollowedTopicIds(setOf(testInputTopics[0].id))
+            topicsRepository.sendTopics(testInputTopics.map { it.topic })
+            topicsRepository.setFollowedTopicIds(setOf(testInputTopics[0].topic.id))
             awaitItem()
             viewModel.followTopic(
-                followedTopicId = testInputTopics[1].id,
-                followed = !testInputTopics[1].followed
+                followedTopicId = testInputTopics[1].topic.id,
+                followed = !testInputTopics[1].isFollowed
             )
 
             assertEquals(
@@ -68,12 +69,12 @@ class FollowingViewModelTest {
     fun uiState_whenUnFollowingNewTopic_thenShowUpdateTopics() = runTest {
         viewModel.uiState.test {
             awaitItem()
-            topicsRepository.sendTopics(testOutputTopics)
-            topicsRepository.setFollowedTopicIds(setOf(testOutputTopics[0].id, testOutputTopics[1].id))
+            topicsRepository.sendTopics(testOutputTopics.map { it.topic })
+            topicsRepository.setFollowedTopicIds(setOf(testOutputTopics[0].topic.id, testOutputTopics[1].topic.id))
             awaitItem()
             viewModel.followTopic(
-                followedTopicId = testOutputTopics[1].id,
-                followed = !testOutputTopics[1].followed
+                followedTopicId = testOutputTopics[1].topic.id,
+                followed = false
             )
 
             assertEquals(
@@ -91,41 +92,64 @@ private const val TOPIC_3_NAME = "Compose"
 private const val TOPIC_DESC = "At vero eos et accusamus et iusto odio dignissimos ducimus qui."
 
 private val testInputTopics = listOf(
-    Topic(
-        id = 0,
-        name = TOPIC_1_NAME,
-        description = TOPIC_DESC,
-        followed = true
+    FollowableTopic(
+        Topic(
+            id = 0,
+            name = TOPIC_1_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = true
     ),
-    Topic(
-        id = 1,
-        name = TOPIC_2_NAME,
-        description = TOPIC_DESC
+    FollowableTopic(
+        Topic(
+            id = 0,
+            name = TOPIC_1_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = false
     ),
-    Topic(
-        id = 2,
-        name = TOPIC_3_NAME,
-        description = TOPIC_DESC
+    FollowableTopic(
+        Topic(
+            id = 1,
+            name = TOPIC_2_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = false
+    ),
+    FollowableTopic(
+        Topic(
+            id = 2,
+            name = TOPIC_3_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = false
     )
+
 )
 
 private val testOutputTopics = listOf(
-    Topic(
-        id = 0,
-        name = TOPIC_1_NAME,
-        description = TOPIC_DESC,
-        followed = true
+    FollowableTopic(
+        Topic(
+            id = 0,
+            name = TOPIC_1_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = true
     ),
-    Topic(
-        id = 1,
-        name = TOPIC_2_NAME,
-        description = TOPIC_DESC,
-        followed = true
+    FollowableTopic(
+        Topic(
+            id = 1,
+            name = TOPIC_2_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = true
     ),
-    Topic(
-        id = 2,
-        name = TOPIC_3_NAME,
-        description = TOPIC_DESC,
-        followed = false
+    FollowableTopic(
+        Topic(
+            id = 2,
+            name = TOPIC_3_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = false
     )
 )

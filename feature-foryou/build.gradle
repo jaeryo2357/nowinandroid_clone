@@ -41,6 +41,7 @@ dependencies {
     androidTestImplementation project(':core-testing')
 
     implementation Libs.Kotlin.Coroutines.android
+    implementation Libs.Kotlin.datetime
 
     implementation Libs.AndroidX.Lifecycle.viewModelCompose
     implementation Libs.AndroidX.Compose.hilt_navigation_compose

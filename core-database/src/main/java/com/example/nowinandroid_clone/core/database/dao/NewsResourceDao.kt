@@ -3,7 +3,6 @@ package com.example.nowinandroid_clone.core.database.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.nowinandroid_clone.core.model.data.NewsResource
 import com.example.nowinandroid_clone.core.database.model.NewsResourceEntity
 import com.example.nowinandroid_clone.core.database.model.PopulatedNewsResource
 import kotlinx.coroutines.flow.Flow

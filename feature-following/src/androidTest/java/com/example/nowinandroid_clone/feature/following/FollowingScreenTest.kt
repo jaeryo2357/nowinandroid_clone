@@ -3,6 +3,8 @@ package com.example.nowinandroid_clone.feature.following
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import com.example.nowinandroid_clone.core.model.data.FollowableTopic
+import com.example.nowinandroid_clone.core.model.data.Topic
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -80,7 +82,7 @@ class FollowingScreenTest {
 
         composeTestRule
             .onAllNodesWithContentDescription(followingTopicCardUnfollowButton)
-            .assertCountEquals(testTopics.filter { it.followed }.size)
+            .assertCountEquals(testTopics.filter { it.isFollowed }.size)
     }
 
     @Test
@@ -105,22 +107,28 @@ private const val TOPIC_3_NAME = "Tools"
 private const val TOPIC_DESC = "At vero eos et accusamus et iusto odio dignissimos ducimus qui."
 
 private val testTopics = listOf(
-    com.example.nowinandroid_clone.core.model.data.Topic(
-        id = 0,
-        name = TOPIC_1_NAME,
-        description = TOPIC_DESC,
-        followed = true
+    FollowableTopic(
+        Topic(
+            id = 0,
+            name = TOPIC_1_NAME,
+            description = TOPIC_DESC
+        ),
+        isFollowed = true,
     ),
-    com.example.nowinandroid_clone.core.model.data.Topic(
-        id = 1,
-        name = TOPIC_2_NAME,
-        description = TOPIC_DESC
+    FollowableTopic(
+        Topic(
+            id = 1,
+            name = TOPIC_2_NAME,
+            description = TOPIC_DESC
+        ), isFollowed = false
     ),
-    com.example.nowinandroid_clone.core.model.data.Topic(
-        id = 2,
-        name = TOPIC_3_NAME,
-        description = TOPIC_DESC
+    FollowableTopic(
+        Topic(
+            id = 2,
+            name = TOPIC_3_NAME,
+            description = TOPIC_DESC
+        ), isFollowed = false
     )
 )
 
-private val numberOfUnfollowedTopics = testTopics.filter { !it.followed }.size
+private val numberOfUnfollowedTopics = testTopics.filter { !it.isFollowed }.size

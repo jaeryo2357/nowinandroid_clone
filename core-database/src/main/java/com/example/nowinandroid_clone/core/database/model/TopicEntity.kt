@@ -15,13 +15,11 @@ data class TopicEntity(
     @PrimaryKey
     val id: Int,
     val name: String,
-    val description: String,
-    val followed: Boolean
+    val description: String
 )
 
 fun TopicEntity.asExternalModel() = Topic(
     id = id,
     name = name,
-    description = description,
-    followed = followed,
+    description = description
 )

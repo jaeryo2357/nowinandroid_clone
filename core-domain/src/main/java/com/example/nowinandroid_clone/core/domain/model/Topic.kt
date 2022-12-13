@@ -6,6 +6,5 @@ import com.example.nowinandroid_clone.core.network.model.NetworkTopic
 fun NetworkTopic.asEntity() = TopicEntity(
     id = id,
     name = name,
-    description = description,
-    followed = followed
+    description = description
 )

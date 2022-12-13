@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.nowinandroid_clone.core.model.data.FollowableTopic
+import com.example.nowinandroid_clone.core.model.data.Topic
 import com.example.nowinandroid_clone.core.ui.NiaLoadingIndicator
 
 @Composable
@@ -80,10 +82,10 @@ fun FollowingWithTopicsScreen(
     LazyColumn(
         modifier = modifier
     ) {
-        uiState.topics.forEach {
+        uiState.topics.forEach { followableTopic ->
             item {
                 FollowingTopicCard(
-                    topic = it,
+                    followableTopic = followableTopic,
                     onTopicClick = onTopicClick,
                     onFollowButtonClick = onFollowButtonClick
                 )
@@ -99,7 +101,7 @@ fun FollowingErrorScreen() {
 
 @Composable
 fun FollowingTopicCard(
-    topic: com.example.nowinandroid_clone.core.model.data.Topic,
+    followableTopic: FollowableTopic,
     onTopicClick: () -> Unit,
     onFollowButtonClick: (Int, Boolean) -> Unit
 ) {
@@ -121,13 +123,13 @@ fun FollowingTopicCard(
                 .weight(1f)
                 .clickable { onTopicClick() }
         ) {
-            TopicTitle(topicName = topic.name)
-            TopicDescription(topicDescription = topic.description)
+            TopicTitle(topicName = followableTopic.topic.name)
+            TopicDescription(topicDescription = followableTopic.topic.description)
         }
         FollowButton(
-            topicId = topic.id,
+            topicId = followableTopic.topic.id,
             onClick = onFollowButtonClick,
-            isFollowed = topic.followed
+            isFollowed = followableTopic.isFollowed
         )
     }
 }

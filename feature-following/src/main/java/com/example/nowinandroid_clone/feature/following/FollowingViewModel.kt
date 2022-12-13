@@ -2,6 +2,8 @@ package com.example.nowinandroid_clone.feature.following
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.nowinandroid_clone.core.domain.repository.TopicsRepository
+import com.example.nowinandroid_clone.core.model.data.FollowableTopic
 import com.example.nowinandroid_clone.core.model.data.Topic
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -10,15 +12,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FollowingViewModel @Inject constructor(
-    private val topicsRepository: com.example.nowinandroid_clone.core.domain.repository.TopicsRepository
+    private val topicsRepository: TopicsRepository
 ) : ViewModel() {
 
     private val followedTopicIdsStream: Flow<FollowingState> =
         topicsRepository.getFollowedTopicIdsStream()
-            .catch { FollowingState.Error }
-            .map { followedTopics ->
-                FollowingState.Topics(topics = followedTopics)
+            .map<Set<Int>, FollowingState> { followTopics ->
+                FollowingState.Topics(topics = followTopics)
             }
+            .catch { emit(FollowingState.Error) }
 
     val uiState: StateFlow<FollowingUiState> = combine(
         followedTopicIdsStream,
@@ -44,17 +46,15 @@ class FollowingViewModel @Inject constructor(
         }
     }
 
-    private fun mapFollowedAndUnfollowedTopics(topics: List<com.example.nowinandroid_clone.core.model.data.Topic>): Flow<FollowingUiState.Topics> =
+    private fun mapFollowedAndUnfollowedTopics(topics: List<Topic>): Flow<FollowingUiState.Topics> =
         topicsRepository.getFollowedTopicIdsStream().map { followTopicIds ->
             FollowingUiState.Topics(
-                topics = topics.map {
-                    Topic(
-                        it.id,
-                        it.name,
-                        it.description,
-                        followTopicIds.contains(it.id)
+                topics = topics.map { topic ->
+                    FollowableTopic(
+                        topic = topic,
+                        isFollowed = topic.id in followTopicIds
                     )
-                }.sortedBy { it.name }
+                }.sortedBy { it.topic.name }
             )
         }
 }
@@ -66,7 +66,7 @@ private sealed interface FollowingState {
 
 sealed interface FollowingUiState {
     object Loading : FollowingUiState
-    data class Topics(val topics: List<com.example.nowinandroid_clone.core.model.data.Topic>) :
+    data class Topics(val topics: List<FollowableTopic>) :
         FollowingUiState
     object Error : FollowingUiState
 }

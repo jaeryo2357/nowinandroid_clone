@@ -179,8 +179,7 @@ private val newsResource = NewsResource(
         Topic(
             id = 1,
             name = "Name",
-            description = "Description",
-            followed = false
+            description = "Description"
         )
     )
 )

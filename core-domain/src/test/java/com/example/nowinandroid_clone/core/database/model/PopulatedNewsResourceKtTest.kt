@@ -39,8 +39,7 @@ class PopulatedNewsResourceKtTest {
                 TopicEntity(
                     id = 3,
                     name = "name",
-                    description = "description",
-                    followed = true,
+                    description = "description"
                 )
             ),
         )
@@ -66,8 +65,7 @@ class PopulatedNewsResourceKtTest {
                     Topic(
                         id = 3,
                         name = "name",
-                        description = "description",
-                        followed = true,
+                        description = "description"
                     )
                 )
             ),

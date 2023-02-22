@@ -1,11 +1,7 @@
 package com.example.nowinandroid_clone.ui
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.captionBarPadding
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoStories
 import androidx.compose.material.icons.filled.Bookmarks
@@ -16,14 +12,9 @@ import androidx.compose.material.icons.outlined.Bookmarks
 import androidx.compose.material.icons.outlined.Grid3x3
 import androidx.compose.material.icons.outlined.Upcoming
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.window.SizeClass
+import androidx.compose.material.window.WidthSizeClass
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -40,7 +31,7 @@ import com.example.nowinandroid_clone.core.ui.theme.NiaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NiaApp() {
+fun NiaApp(windowSizeClass: SizeClass) {
     NiaTheme {
         val navController = rememberNavController()
         val navigationActions = remember(navController) {
@@ -54,17 +45,50 @@ fun NiaApp() {
         Scaffold(
             modifier = Modifier,
             bottomBar = {
-                NiaBottomBar(navigationActions, currentRoute)
+                if(windowSizeClass.width == WidthSizeClass.Compact)
+                    NiaBottomBar(
+                        navigationActions = navigationActions,
+                        currentRoute = currentRoute
+                    )
             }
         ) { padding ->
-            Surface(Modifier.fillMaxWidth()) {
-                NiaNavGraph(
-                    navController = navController,
-                    modifier = Modifier
-                        .statusBarsPadding()
-                        .padding(padding)
-                )
+            Surface(Modifier.fillMaxSize().statusBarsPadding()) {
+                Row {
+                    if (windowSizeClass.width != WidthSizeClass.Compact) {
+                        NiANavRail(
+                            navigationActions = navigationActions,
+                            currentRoute = currentRoute
+                        )
+                    }
+                    NiaNavGraph(
+                        navController = navController,
+                        modifier = Modifier.padding(padding)
+                    )
+                }
             }
+        }
+    }
+}
+
+@Composable
+private fun NiANavRail(
+    navigationActions: NiaNavigationActions,
+    currentRoute: String
+) {
+    NavigationRail {
+        TOP_LEVEL_DESTINATIONS.forEach { destination ->
+            val selected = currentRoute == destination.route
+            NavigationRailItem(
+                selected = selected,
+                onClick = { navigationActions.navigateToTopLevelDestination(destination.route) },
+                icon = {
+                    Icon(
+                        if (selected) destination.selectedIcon else destination.unselectedIcon,
+                        contentDescription = null
+                    )
+                },
+                label = { Text(stringResource(destination.iconTextId)) }
+            )
         }
     }
 }
@@ -87,7 +111,7 @@ private fun NiaBottomBar(
                     NavigationBarItem(
                         selected = selected,
                         onClick = {
-                            navigationActions.navigationToTopLevelDestination(dst.route)
+                            navigationActions.navigateToTopLevelDestination(dst.route)
                         },
                         icon = {
                             Icon(

@@ -70,9 +70,11 @@ dependencies {
 
     implementation Libs.AndroidX.Activity.activityCompose
     implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.windowManager
     implementation Libs.AndroidX.appcompat
     implementation Libs.AndroidX.Compose.hilt_navigation_compose
     implementation Libs.AndroidX.Compose.navigation
+    implementation Libs.AndroidX.Compose.materialWindow
     implementation Libs.material3
 
     implementation Libs.DI.hilt_android

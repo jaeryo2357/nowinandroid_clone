@@ -16,6 +16,7 @@ package com.example.nowinandroid_clone.ui
  * limitations under the License.
  */
 
+import androidx.compose.material.window.ExperimentalMaterialWindowApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.espresso.Espresso
@@ -33,6 +34,7 @@ import org.junit.rules.TemporaryFolder
 /**
  * Tests all the navigation flows that are handled by the navigation library.
  */
+@ExperimentalMaterialWindowApi
 @HiltAndroidTest
 class NavigationTest {
 

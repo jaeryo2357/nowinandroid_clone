@@ -12,7 +12,7 @@ object NiaDestinations {
 }
 
 class NiaNavigationActions(private val navController: NavController) {
-    fun navigationToTopLevelDestination(route: String) {
+    fun navigateToTopLevelDestination(route: String) {
         navController.navigate(route) {
             popUpTo(navController.graph.findStartDestination().id) {
                 saveState = true

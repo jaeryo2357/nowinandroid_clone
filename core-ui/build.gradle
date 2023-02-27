@@ -33,6 +33,8 @@ dependencies {
 
     implementation Libs.AndroidX.coreKtx
     implementation Libs.Kotlin.datetime
+    implementation Libs.coil
+    implementation Libs.coilCompose
 
     api Libs.AndroidX.Compose.layout
     // TODO (M3): Remove this dependency when all components are available

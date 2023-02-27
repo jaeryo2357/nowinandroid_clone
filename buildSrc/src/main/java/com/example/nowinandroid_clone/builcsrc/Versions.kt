@@ -22,6 +22,9 @@ object Libs {
 
     const val material3 = "com.google.android.material:material:1.5.0-alpha05"
 
+    const val coil = "io.coil-kt:coil:2.0.0-rc01"
+    const val coilCompose = "io.coil-kt:coil-compose:2.0.0-rc01"
+
     object Accompanist {
         private const val version = "0.21.4-beta"
         const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$version"

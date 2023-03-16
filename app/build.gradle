@@ -29,6 +29,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        benchmark {
+            initWith buildTypes.release
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['release']
+            proguardFiles 'benchmark-rules.pro'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -81,6 +87,8 @@ dependencies {
     kapt Libs.DI.hilt_compiler
 
     kaptAndroidTest Libs.DI.hilt_compiler
+
+    implementation "androidx.profileinstaller:profileinstaller:1.2.0-alpha02"
 
     configurations.configureEach {
         resolutionStrategy {

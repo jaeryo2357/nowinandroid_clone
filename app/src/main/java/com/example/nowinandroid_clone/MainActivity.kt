@@ -19,5 +19,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             NiaApp(rememberSizeClass())
         }
+        reportFullyDrawn()
     }
 }

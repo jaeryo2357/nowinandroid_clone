@@ -1,20 +1,17 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id "com.google.protobuf" version "0.8.18"
+    alias(libs.plugins.protobuf)
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -25,9 +22,10 @@ android {
     }
 }
 
+// Setup protobuf configuration, generating lite Java and Kotlin classes
 protobuf {
     protoc {
-        artifact = Libs.Protobuf.profoc
+        artifact = libs.protobuf.protoc.get()
     }
     generateProtoTasks {
         all().each { task ->
@@ -45,17 +43,18 @@ protobuf {
 
 dependencies {
     implementation project(':core-common')
+
     testImplementation project(':core-testing')
 
+    implementation libs.kotlinx.coroutines.android
 
-    implementation Libs.Kotlin.Coroutines.android
-
-    implementation Libs.AndroidX.dataStore
-
-    implementation (Libs.Protobuf.profoc_kotlin) {
+    implementation libs.androidx.dataStore
+    implementation(libs.protobuf.kotlin.lite) {
+        // TODO: https://github.com/protocolbuffers/protobuf/issues/9517
         exclude group: "org.jetbrains.kotlin", module: "kotlin-test"
     }
 
-    implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kaptAndroidTest libs.hilt.compiler
 }

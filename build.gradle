@@ -1,33 +1,42 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 buildscript {
+
+    ext.buildConfig = [
+            'compileSdk': 31,
+            'minSdk'    : 21,
+            'targetSdk' : 31,
+    ]
+
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://androidx.dev/snapshots/builds/8273139/artifacts/repository' }
     }
 
     dependencies {
-        classpath Libs.androidGradlePlugin
-        classpath Libs.Kotlin.gradlePlugin
-        classpath Libs.Kotlin.serializationPlugin
-        classpath Libs.DI.hilt_gradle_plugin
+        classpath(libs.android.gradlePlugin)
+        classpath(libs.kotlin.gradlePlugin)
+        classpath(libs.kotlin.serializationPlugin)
+        classpath(libs.hilt.gradlePlugin)
     }
 }
 
 plugins {
-    id 'com.android.application' version '7.2.2' apply false
-    id 'com.android.library' version '7.2.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
-    id 'com.android.test' version '7.2.2' apply false
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    alias(libs.plugins.spotless)
 }
 
 subprojects {
+
+    apply plugin: 'com.diffplug.spotless'
+    spotless {
+        kotlin {
+            target '**/*.kt'
+            targetExclude("$buildDir/**/*.kt")
+            targetExclude('bin/**/*.kt')
+            targetExclude("$rootDir/core-network/src/main/java/com/google/samples/apps/nowinandroid/core/network/fake/FakeData.kt")
+            ktlint(libs.versions.ktlint.get()).userData([android: "true"])
+            licenseHeaderFile rootProject.file('spotless/copyright.kt')
+        }
+    }
+
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         kotlinOptions {
             // Treat all Kotlin warnings as errors (disabled by default)

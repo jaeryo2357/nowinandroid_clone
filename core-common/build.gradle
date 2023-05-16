@@ -1,6 +1,3 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -8,13 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -22,10 +18,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+}
 
-    dependencies {
-        implementation Libs.Kotlin.Coroutines.android
-        implementation Libs.DI.hilt_android
-        kapt Libs.DI.hilt_compiler
-    }
+dependencies {
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 }

@@ -1,20 +1,17 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlinx-serialization'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -32,12 +29,12 @@ dependencies {
     implementation project(':core-datastore')
     implementation project(':core-network')
 
-    testImplementation project(":core-testing")
+    testImplementation project(':core-testing')
 
-    implementation Libs.Kotlin.Coroutines.android
-    implementation Libs.Kotlin.datetime
-    implementation Libs.Kotlin.serializationJson
+    implementation libs.kotlinx.datetime
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.kotlinx.serialization.json
 
-    implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 }

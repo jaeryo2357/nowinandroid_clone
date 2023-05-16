@@ -1,20 +1,17 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id "com.google.devtools.ksp" version "1.6.0-1.0.1"
+    alias(libs.plugins.ksp)
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -26,16 +23,15 @@ android {
 }
 
 dependencies {
-    implementation project(":core-model")
+    implementation project(':core-model')
 
-    implementation Libs.AndroidX.Room.roomRuntime
-    implementation Libs.AndroidX.Room.roomKtx
-    ksp Libs.AndroidX.Room.roomCompiler
+    implementation libs.room.runtime
+    implementation libs.room.ktx
+    ksp libs.room.compiler
 
-    implementation Libs.Kotlin.datetime
-    implementation Libs.Kotlin.Coroutines.android
-    implementation Libs.Kotlin.serializationJson
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.kotlinx.datetime
 
-    implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 }

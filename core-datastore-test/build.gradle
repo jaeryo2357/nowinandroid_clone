@@ -1,19 +1,16 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
     }
 
     compileOptions {
@@ -27,14 +24,14 @@ android {
 }
 
 dependencies {
-    implementation project(":core-datastore")
-    implementation project(":core-testing")
+    implementation project(':core-datastore')
+    implementation project(':core-testing')
 
-    implementation Libs.AndroidX.dataStore
+    implementation libs.androidx.dataStore
 
-    implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
-    kaptAndroidTest Libs.DI.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kaptAndroidTest libs.hilt.compiler
 
     configurations.configureEach {
         resolutionStrategy {

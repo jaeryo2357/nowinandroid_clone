@@ -1,17 +1,14 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -24,26 +21,26 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion libs.versions.androidxCompose.get()
     }
 }
 
 dependencies {
-    implementation project(":core-model")
+    implementation project(':core-model')
 
-    implementation Libs.AndroidX.coreKtx
-    implementation Libs.Kotlin.datetime
-    implementation Libs.coil
-    implementation Libs.coilCompose
+    implementation libs.androidx.core.ktx
+    implementation libs.coil.kt
+    implementation libs.coil.kt.compose
+    implementation libs.kotlinx.datetime
 
-    api Libs.AndroidX.Compose.layout
+    api libs.androidx.compose.foundation.layout
     // TODO (M3): Remove this dependency when all components are available
-    api Libs.AndroidX.Compose.material
-    api Libs.AndroidX.Compose.Material3.icon
-    api Libs.AndroidX.Compose.Material3.material3
-    debugApi Libs.AndroidX.Compose.tooling
-    api Libs.AndroidX.Compose.preview
-    api Libs.AndroidX.Compose.uiUtil
-    api Libs.AndroidX.Compose.runtime
-    api Libs.AndroidX.Compose.runtimeLivedata
+    api libs.androidx.compose.material
+    api libs.androidx.compose.material.iconsExtended
+    api libs.androidx.compose.material3
+    debugApi libs.androidx.compose.ui.tooling
+    api libs.androidx.compose.ui.tooling.preview
+    api libs.androidx.compose.ui.util
+    api libs.androidx.compose.runtime
+    api libs.androidx.compose.runtime.livedata
 }

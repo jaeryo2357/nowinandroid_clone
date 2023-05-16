@@ -5,6 +5,7 @@ pluginManagement {
         mavenCentral()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -27,4 +28,3 @@ include ':core-ui'
 include ':core-testing'
 include ':feature-foryou'
 include ':feature-following'
-include ':benchmark'

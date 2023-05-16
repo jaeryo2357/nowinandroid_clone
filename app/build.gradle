@@ -1,24 +1,25 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'jacoco'
     id 'dagger.hilt.android.plugin'
 }
 
+def jacocoTestReport = tasks.create("jacocoTestReport")
+
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.example.nowinandroid_clone"
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
-        versionCode Versions.versionCodeBase
-        versionName Versions.versionName
+        applicationId "com.google.samples.apps.nowinandroid"
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
+        versionCode 1
+        versionName "0.0.1" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
-        testInstrumentationRunner "com.example.nowinandroid_clone.core.testing.NiaTestRunner"
+        // Custom test runner to set up Hilt dependency graph
+        testInstrumentationRunner "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -26,14 +27,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        benchmark {
-            initWith buildTypes.release
-            signingConfig signingConfigs.debug
-            matchingFallbacks = ['release']
-            proguardFiles 'benchmark-rules.pro'
         }
     }
     compileOptions {
@@ -49,7 +44,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion libs.versions.androidxCompose.get()
     }
     packagingOptions {
         resources {
@@ -60,6 +55,42 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+    }
+    androidComponents {
+        def coverageExclusions = [
+                // Android
+                "**/R.class",
+                "**/R\$*.class",
+                "**/BuildConfig.*",
+                "**/Manifest*.*"
+        ]
+
+        onVariants(
+                selector().all(),
+                { variant ->
+                    def testTaskName = "test${variant.name.capitalize()}UnitTest"
+
+                    def reportTask = tasks.register("jacoco${testTaskName.capitalize()}Report", JacocoReport) {
+                        dependsOn(testTaskName)
+
+                        reports {
+                            xml.required.set(true)
+                            html.required.set(true)
+                        }
+
+                        classDirectories.setFrom(
+                                fileTree("$buildDir/tmp/kotlin-classes/${variant.name}") {
+                                    exclude(coverageExclusions)
+                                }
+                        )
+
+                        sourceDirectories.setFrom(files("$projectDir/src/main/java", "$projectDir/src/main/kotlin"))
+                        executionData.setFrom(file("$buildDir/jacoco/${testTaskName}.exec"))
+                    }
+
+                    jacocoTestReport.dependsOn(reportTask)
+                }
+        )
     }
 }
 
@@ -72,28 +103,42 @@ dependencies {
     androidTestImplementation project(':core-testing')
     androidTestImplementation project(':core-datastore-test')
 
-    coreLibraryDesugaring Libs.jdkDesugar
+    coreLibraryDesugaring libs.android.desugarJdkLibs
 
-    implementation Libs.AndroidX.Activity.activityCompose
-    implementation Libs.AndroidX.coreKtx
-    implementation Libs.AndroidX.windowManager
-    implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.Compose.hilt_navigation_compose
-    implementation Libs.AndroidX.Compose.navigation
-    implementation Libs.AndroidX.Compose.materialWindow
-    implementation Libs.material3
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.hilt.navigation.compose
+    implementation libs.androidx.navigation.compose
+    implementation libs.material3
 
-    implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kaptAndroidTest libs.hilt.compiler
 
-    kaptAndroidTest Libs.DI.hilt_compiler
-
-    implementation "androidx.profileinstaller:profileinstaller:1.2.0-alpha02"
-
+    // androidx.test is forcing JUnit, 4.12. This forces it to use 4.13
     configurations.configureEach {
         resolutionStrategy {
-            force Libs.junit
+            force libs.junit4
+            // Temporary workaround for https://issuetracker.google.com/174733673
             force 'org.objenesis:objenesis:2.6'
         }
+    }
+}
+
+jacoco {
+    toolVersion libs.versions.jacoco.get()
+}
+
+tasks.withType(Test) {
+    jacoco {
+        // Required for JaCoCo + Robolectric
+        // https://github.com/robolectric/robolectric/issues/2230
+        // TODO: Consider removing if not we don't add Robolectric
+        setIncludeNoLocationClasses(true)
+
+        // Required for JDK 11+ with the above
+        // https://github.com/gradle/gradle/issues/5184#issuecomment-391982009
+        excludes = ["jdk.internal.*"]
     }
 }

@@ -1,21 +1,18 @@
-import com.example.nowinandroid_clone.builcsrc.Libs
-import com.example.nowinandroid_clone.builcsrc.Versions
-
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk Versions.compileSdk
+    compileSdk buildConfig.compileSdk
 
     defaultConfig {
-        minSdk Versions.minSdk
-        targetSdk Versions.targetSdk
+        minSdk buildConfig.minSdk
+        targetSdk buildConfig.targetSdk
 
-        testInstrumentationRunner "com.example.nowinandroid_clone.core.testing.NiaTestRunner"
+        testInstrumentationRunner "com.google.samples.apps.nowinandroid.core.testing.NiaTestRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -28,7 +25,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion libs.versions.androidxCompose.get()
     }
 }
 
@@ -40,20 +37,22 @@ dependencies {
     testImplementation project(':core-testing')
     androidTestImplementation project(':core-testing')
 
-    implementation Libs.Kotlin.Coroutines.android
-    implementation Libs.Kotlin.datetime
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.kotlinx.datetime
 
-    implementation Libs.AndroidX.Lifecycle.viewModelCompose
-    implementation Libs.AndroidX.Compose.hilt_navigation_compose
+    implementation libs.androidx.hilt.navigation.compose
+    implementation libs.androidx.lifecycle.viewModelCompose
 
-    implementation Libs.Accompanist.flowLayout
+    implementation libs.accompanist.flowlayout
 
-    implementation Libs.DI.hilt_android
-    kapt Libs.DI.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
+    // androidx.test is forcing JUnit, 4.12. This forces it to use 4.13
     configurations.configureEach {
         resolutionStrategy {
-            force Libs.junit
+            force libs.junit4
+            // Temporary workaround for https://issuetracker.google.com/174733673
             force 'org.objenesis:objenesis:2.6'
         }
     }
